@@ -6,16 +6,12 @@ let students = [
   { name: "Kofi", age: 12, scores: [5, 5, 80] },
 ];
 
-function calculateAverage(student) {
+function calculateAverage(scores) {
   let totalScore = 0;
-  for (let i = 0; i < student.scores.length; i++) {
-    totalScore += student.scores[i];
+  for (let i = 0; i < scores.length; i++) {
+    totalScore += scores[i];
   }
-  return totalScore / student.scores.length;
-}
-for (let i = 0; i < students.length; i++) {
-  let avg = calculateAverage(students[i]);
-  
+  return totalScore / scores.length;
 }
 
 // // After we find the average, we will now use it to assign a grade letter to the student
@@ -34,13 +30,6 @@ function calculateGrade(average) {
     return "F";
   }
 }
-for (let i = 0; i < students.length; i++) {
-  let avg = calculateAverage(students[i]);
-  let grade = calculateGrade(avg);
-  
-}
-
-// console.log(calculateGrade(avg)); // Here we passed the value of average as an argument
 
 // This function checks whether the student passed or fail
 // And the pass mark starts from 60, if the students didn't meet this requirement then he/she failed
@@ -52,20 +41,15 @@ function passFail(average) {
   }
 }
 
-for (let i = 0; i < students.length; i++) {
-  let avg = calculateAverage(students[i]);
-  let remark = passFail(avg);
-  
-}
-
 function finalMessage(name, average, grade, remark) {
   return `${name}'s average score is ${average}. Grade:${grade} Remark:${remark}`;
 }
 
 for (let i = 0; i < students.length; i++) {
-  let s = students[i];
-  let avg = calculateAverage(s);
+  let student = students[i];
+
+  let avg = calculateAverage(student.scores);
   let grade = calculateGrade(avg);
   let remark = passFail(avg);
-  console.log(finalMessage(s.name, avg, grade, remark));
+  console.log(finalMessage(student.name, avg, grade, remark));
 }
