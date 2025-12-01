@@ -1,9 +1,11 @@
 // Here we will calculate for the total score of the given subject marks
 // We will do this by using a for loop inside our function and calculate the average with the total
+let students = [
+  { name: "Ishmael", age: 23, scores: [90, 80, 70] },
+  { name: "Ama", age: 22, scores: [75, 55, 60] },
+  { name: "Kofi", age: 12, scores: [5, 5, 80] },
+];
 
-// let student = { name: "Ishmael", age: 23, scores: [90, 80, 70] };
-// let student2 = { name: "Ama", age: 22, scores: [75, 55, 60] };
-let student3 = { name: "Kofi", age: 12, scores: [5, 5, 80] };
 function calculateAverage(student) {
   let totalScore = 0;
   for (let i = 0; i < student.scores.length; i++) {
@@ -11,14 +13,14 @@ function calculateAverage(student) {
   }
   return totalScore / student.scores.length;
 }
-// console.log(calculateAverage(student));
-// console.log(calculateAverage(student2));
-console.log(calculateAverage(student3));
+for (let i = 0; i < students.length; i++) {
+  let avg = calculateAverage(students[i]);
+  
+}
 
-let averageScore = calculateAverage(student3); //Variable to store the function that calculates the average
+// // After we find the average, we will now use it to assign a grade letter to the student
+// // So here the function calculateGrade(average) assign grade letter based on the average score of the student
 
-// After we find the average, we will now use it to assign a grade letter to the student
-// So here the function calculateGrade(average) assign grade letter based on the average score of the student
 function calculateGrade(average) {
   if (average >= 90) {
     return "A";
@@ -32,9 +34,13 @@ function calculateGrade(average) {
     return "F";
   }
 }
-let grade = calculateGrade(averageScore);
+for (let i = 0; i < students.length; i++) {
+  let avg = calculateAverage(students[i]);
+  let grade = calculateGrade(avg);
+  
+}
 
-console.log(calculateGrade(averageScore)); // Here we passed the value of average as an argument
+// console.log(calculateGrade(avg)); // Here we passed the value of average as an argument
 
 // This function checks whether the student passed or fail
 // And the pass mark starts from 60, if the students didn't meet this requirement then he/she failed
@@ -42,15 +48,24 @@ function passFail(average) {
   if (average >= 60) {
     return "Passed";
   } else {
-    return "Fail";
+    return "Failed";
   }
 }
-let remark = passFail(averageScore);
 
-console.log(passFail(averageScore));
-
-function finalMessage(name) {
-  let result = `${name}'s average score is ${averageScore}. Grade: ${grade}.  Remark:${remark}`;
-  return result;
+for (let i = 0; i < students.length; i++) {
+  let avg = calculateAverage(students[i]);
+  let remark = passFail(avg);
+  
 }
-console.log(finalMessage(student3.name));
+
+function finalMessage(name, average, grade, remark) {
+  return `${name}'s average score is ${average}. Grade:${grade} Remark:${remark}`;
+}
+
+for (let i = 0; i < students.length; i++) {
+  let s = students[i];
+  let avg = calculateAverage(s);
+  let grade = calculateGrade(avg);
+  let remark = passFail(avg);
+  console.log(finalMessage(s.name, avg, grade, remark));
+}
